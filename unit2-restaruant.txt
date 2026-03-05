@@ -1,0 +1,65 @@
+menu = {
+    "burger": 100,
+    "pizza": 150,
+    "pasta": 120
+}
+
+stock = {
+    "burger": 2,
+    "pizza": 2,
+    "pasta": 2
+}
+
+combo = ("burger", "pasta")
+
+print("Welcome to Restaurant Game!")
+
+while True:
+    print("\nMenu:")
+    print("burger - 100")
+    print("pizza - 150")
+    print("pasta - 120")
+    print("Type 'done' to finish order")
+    print("Type 'exit' to close restaurant")
+
+    orders = []
+    total = 0
+
+    while True:
+        item = input("Enter item: ")
+
+        if item == "done":
+            break
+
+        if item == "exit":
+            break
+
+        if item not in menu:
+            print("Invalid item")
+            continue
+
+        if stock[item] == 0:
+            print("Out of stock")
+            continue
+
+        orders.append(item)
+        stock[item] -= 1
+        total += menu[item]
+
+        print("Added:", item)
+
+    if item == "exit":
+        break
+
+    if combo[0] in orders and combo[1] in orders:
+        total -= 20
+        print("Combo discount applied!")
+
+    print("\nYour Orders:", orders)
+    print("Total Bill:", total)
+
+    again = input("Next customer? (yes/no): ")
+    if again != "yes":
+        break
+
+print("\nRestaurant Closed")
